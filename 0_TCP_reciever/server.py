@@ -1,6 +1,6 @@
 import socket
 
-server_socket = ('localhost', 1000)
+server_socket = ('127.0.0.1', 2000)
 print('Server listening for connections on {0} port {1}'.format(server_socket[0],
     server_socket[1]))
 
@@ -18,6 +18,10 @@ print('Connection established with {0}'.format(client_addr))
 
 # connection established, begin echoing stuff
 while True:
-    recieved = server.recv(1024)
+    recieved = connection.recv(1024)
     if recieved:
-        print('recieved: ' + recieved)
+        print('recieved: ' + recieved.decode('ascii'))
+        if recieved.decode('ascii') == 'q':
+            break
+
+print('Closing server.')
