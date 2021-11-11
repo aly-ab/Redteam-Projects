@@ -22,6 +22,9 @@ while True:
     if recieved:
         print('recieved: ' + recieved.decode('ascii'))
         if recieved.decode('ascii') == 'q':
-            break
+            print('Waiting for a connection...')
+            server.listen()
+            connection, client_addr = server.accept()
+            print('Connection established with {0}'.format(client_addr))
 
 print('Closing server.')
